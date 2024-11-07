@@ -1,9 +1,17 @@
 'use client'
 
-import { SquareChevronUp } from 'lucide-react'
+import { Clapperboard, House, LogIn, SquareChevronUp } from 'lucide-react'
 import { Button } from '../ui/button'
 import { useState } from 'react'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
+
+const listNav = [
+  { name: 'Home', icon: <House size={22} /> },
+  { name: 'Movies', icon: <Clapperboard size={22} /> },
+  { name: 'Login', icon: <LogIn size={22} /> },
+]
+
 export const Header = () => {
   const [open, setOpen] = useState(false)
 
@@ -19,27 +27,30 @@ export const Header = () => {
             Say<span className="text-emerald-400">Paje</span>
           </h1>
         </Link>
-
         <Button className="md:hidden" onClick={handleSwitchMenu}>
-          {open ? (
-            <SquareChevronUp className="rotate-0 ease-in-out duration-300" />
-          ) : (
-            <SquareChevronUp className="-rotate-180 ease-in-out duration-300" />
-          )}
+          <SquareChevronUp
+            className={cn(
+              'text-emerald-400 rotate-0 ease-in-out duration-300',
+              open && '-rotate-180',
+            )}
+          />
         </Button>
+
         <ul
-          className={`md:gap-4  md:flex md:static md:justify-end md:w-auto absolute z-0 w-full bg-neutral-900 p-1 top-12 left-0 right-0 ${open ? 'block' : 'hidden'}
-            `}
+          className={cn(
+            `md:gap-4  md:flex md:static md:justify-end md:w-auto absolute z-0 w-full bg-neutral-900 p-1 top-12 left-0 right-0 hidden`,
+            open && 'block',
+          )}
         >
-          <li className="hover:bg-neutral-950 cursor-pointer p-1 rounded">
-            Home
-          </li>
-          <li className="hover:bg-neutral-950 cursor-pointer p-1 rounded duration-100">
-            Movies
-          </li>
-          <li className="hover:bg-neutral-950 cursor-pointer p-1 rounded duration-100">
-            Login
-          </li>
+          {listNav.map((value) => (
+            <li
+              className="hover:bg-emerald-500 ease-in-out duration-200 cursor-pointer p-1 rounded flex gap-2 items-center"
+              key={value.name}
+            >
+              {value.icon}
+              {value.name}
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
