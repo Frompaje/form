@@ -24,9 +24,9 @@ const config: Config = {
       keyframes: {
         shake: {
           '0%, 100%': { transform: 'translate(0,0)' },
-          '25%': { transform: 'translate(-2px,-2px)' },
-          '40%': { transform: 'translate(2px,-2px)' },
-          '70%': { transform: 'translate(-2px,2px)' },
+          '25%': { transform: 'translate(-1px,-1px)' },
+          '40%': { transform: 'translate(1px,-1px)' },
+          '70%': { transform: 'translate(-1px,1px)' },
         },
       },
     },

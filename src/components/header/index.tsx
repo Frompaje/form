@@ -25,7 +25,7 @@ export const Header = () => {
 
   return (
     <header className="bg-neutral-900 text-white font-semibold p-1">
-      <nav className="flex justify-between items-center p-1 md:justify-around">
+      <nav className="flex justify-between items-center p-1 md:justify-around ">
         <Link href={'/'}>
           <h1 className="text-lg font-bold">
             Say<span className="text-emerald-400">Paje</span>
@@ -42,8 +42,8 @@ export const Header = () => {
 
         <ul
           className={cn(
-            `md:gap-4  md:flex md:static md:justify-end md:w-auto absolute z-0 w-full bg-neutral-900 p-1 top-12 left-0 right-0 hidden`,
-            open && 'block',
+            `md:gap-4  md:flex md:static md:justify-end md:w-auto absolute z-0 w-full bg-neutral-900 p-1 top-12 left-0 right-0 opacity-0 duration-300 rounded-md`,
+            open && 'block opacity-100  scale-15000 ease-in-out duration-300',
           )}
         >
           {listNav.map((value) => (
