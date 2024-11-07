@@ -7,8 +7,19 @@ import { useSearchParams } from 'next/navigation'
 import { LoadingSpin } from '../loadingSpin'
 import Image from 'next/image'
 import Link from 'next/link'
+import { cn } from '@/lib/utils'
 
-export const MovieCard = () => {
+type Props = {
+  currentStepInitial: number
+  currentStepFinal: number
+  className?: string
+}
+
+export const MovieCard = ({
+  currentStepInitial,
+  currentStepFinal,
+  className,
+}: Props) => {
   const searchParams = useSearchParams()
   const params = searchParams.get('')
 
@@ -19,22 +30,24 @@ export const MovieCard = () => {
   })
 
   return (
-    <div className="grid grid-cols-2 gap-2 p-1 ">
+    <div className={cn('grid grid-cols-2 gap-2 p-1 ', className)}>
       {isPending && <LoadingSpin />}
       {data &&
-        data.results.map((movie: Movie) => (
-          <div key={movie.id}>
-            <Link href={'/movies'}>
-              <Image
-                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                width={500}
-                height={500}
-                className="rounded-lg border-solid hover:border border-emerald-500"
-                alt="imagem do filme"
-              />
-            </Link>
-          </div>
-        ))}
+        data.results
+          .slice(currentStepInitial, currentStepFinal)
+          .map((movie: Movie) => (
+            <div key={movie.id}>
+              <Link href={'/movies'}>
+                <Image
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  width={500}
+                  height={500}
+                  className="rounded-lg border-solid hover:border border-emerald-500"
+                  alt="imagem do filme"
+                />
+              </Link>
+            </div>
+          ))}
     </div>
   )
 }
