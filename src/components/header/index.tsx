@@ -7,9 +7,13 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 const listNav = [
-  { name: 'Home', icon: <House size={22} /> },
-  { name: 'Movies', icon: <Clapperboard size={22} /> },
-  { name: 'Login', icon: <LogIn size={22} /> },
+  {
+    name: 'Home',
+    icon: <House size={22} />,
+    href: '/',
+  },
+  { name: 'Movies', icon: <Clapperboard size={22} />, href: '/movies' },
+  { name: 'Login', icon: <LogIn size={22} />, href: '/login' },
 ]
 
 export const Header = () => {
@@ -43,13 +47,12 @@ export const Header = () => {
           )}
         >
           {listNav.map((value) => (
-            <li
-              className="hover:bg-emerald-500 ease-in-out duration-200 cursor-pointer p-1 rounded flex gap-2 items-center"
-              key={value.name}
-            >
-              {value.icon}
-              {value.name}
-            </li>
+            <Link href={value.href} key={value.name}>
+              <li className="hover:bg-emerald-500 ease-in-out duration-200 cursor-pointer p-1 rounded flex gap-2 items-center group">
+                <span className="group-hover:animate-shake">{value.icon}</span>
+                {value.name}
+              </li>
+            </Link>
           ))}
         </ul>
       </nav>
