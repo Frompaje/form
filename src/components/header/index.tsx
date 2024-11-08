@@ -42,7 +42,7 @@ export const Header = () => {
 
         <ul
           className={cn(
-            `md:gap-4  md:flex md:static md:justify-end md:w-auto absolute z-0 w-full bg-neutral-900 border-b-4 border-emerald-500 p-1 top-12 left-0 right-0 opacity-0 duration-300 rounded-md`,
+            `md:gap-4  md:flex md:static md:justify-end md:w-auto absolute z-0 w-full bg-neutral-900 border-b-4 border-emerald-500 p-1 top-12 left-0 right-0 opacity-0 duration-300 rounded-md hidden`,
             open && 'block opacity-100  scale-15000 ease-in-out duration-300',
           )}
         >

@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query'
 import { useSearchParams } from 'next/navigation'
 import { LoadingSpin } from '../loadingSpin'
 import Image from 'next/image'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
 type Props = {
@@ -30,22 +29,20 @@ export const MovieCard = ({
   })
 
   return (
-    <div className={cn('grid grid-cols-2 gap-2 p-1 ', className)}>
+    <div className={cn('grid grid-cols-2 gap-2 p-1', className)}>
       {isPending && <LoadingSpin />}
       {data &&
         data.results
           .slice(currentStepInitial, currentStepFinal)
           .map((movie: Movie) => (
             <div key={movie.id}>
-              <Link href={'/movies'}>
-                <Image
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-                  width={500}
-                  height={500}
-                  className="rounded-lg border-solid hover:border border-emerald-500"
-                  alt="imagem do filme"
-                />
-              </Link>
+              <Image
+                src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                width={500}
+                height={500}
+                className="rounded-lg border-solid hover:border border-emerald-500 "
+                alt="imagem do filme"
+              />
             </div>
           ))}
     </div>
