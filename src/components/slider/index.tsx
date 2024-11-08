@@ -6,9 +6,10 @@ import { MovieCard } from '../movieCard'
 import { Button } from '../ui/button'
 
 export const SliderMovie = () => {
-  const [currentStepSlide, setCurrentStepSlide] = useState(40)
+  const [currentStepSlide, setCurrentStepSlide] = useState(24)
 
   const nextStateImg = () => {
+    console.log('next: ' + currentStepSlide)
     if (currentStepSlide === -28) return
     setCurrentStepSlide((prev) => prev - 24)
   }
@@ -37,7 +38,7 @@ export const SliderMovie = () => {
         <Button
           onClick={prevStateImg}
           disabled={currentStepSlide > 8}
-          className="absolute  bottom-[78%] left-5 text-2xl rounded-lg p-2 bg-emerald-500/100 text-white cursor-pointer scale-110"
+          className="absolute left-5 text-2xl rounded-lg p-2 bg-emerald-500/100 text-white cursor-pointer scale-110"
           size="icon"
         >
           <ChevronLeft />
@@ -45,7 +46,7 @@ export const SliderMovie = () => {
         <Button
           disabled={currentStepSlide < -8}
           onClick={nextStateImg}
-          className="absolute bottom-[78%]  right-5 text-2xl rounded-lg p-2 bg-emerald-500/100 text-white cursor-pointer scale-110"
+          className="absolute  right-5 text-2xl rounded-lg p-2 bg-emerald-500/100 text-white cursor-pointer scale-110"
           size="icon"
         >
           <ChevronRight />
