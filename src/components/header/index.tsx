@@ -2,7 +2,7 @@
 
 import { Clapperboard, House, LogIn, SquareChevronUp } from 'lucide-react'
 import { Button } from '../ui/button'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -10,22 +10,42 @@ const listNav = [
   {
     name: 'Home',
     icon: <House size={22} />,
-    href: '/',
+    href: '/youtube',
   },
-  { name: 'Movies', icon: <Clapperboard size={22} />, href: '/movies' },
-  { name: 'Login', icon: <LogIn size={22} />, href: '/login' },
+  { name: 'Movies', icon: <Clapperboard size={22} />, href: '/youtube' },
+  { name: 'Login', icon: <LogIn size={22} />, href: '/youtube' },
 ]
 
 export const Header = () => {
   const [open, setOpen] = useState(false)
+  const headerRef = useRef<HTMLDivElement | null>(null)
 
   function handleSwitchMenu() {
     setOpen(!open)
   }
 
+  const clickTargetHeader = (e: MouseEvent) => {
+    if (
+      headerRef.current &&
+      !(e.target instanceof Node && headerRef.current.contains(e.target))
+    ) {
+      setOpen(false)
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', clickTargetHeader)
+    return () => {
+      document.removeEventListener('mousedown', clickTargetHeader)
+    }
+  }, [])
+
   return (
-    <header className="bg-neutral-900 text-white font-semibold p-1 relative z-50 ">
-      <nav className="flex justify-between items-center p-1 md:justify-around ">
+    <header
+      ref={headerRef}
+      className="bg-neutral-900 text-white font-semibold p-1 relative z-50"
+    >
+      <nav className="flex justify-between items-center p-1 md:justify-around">
         <Link href={'/'}>
           <h1 className="text-lg font-bold">
             Say<span className="text-emerald-400">Paje</span>

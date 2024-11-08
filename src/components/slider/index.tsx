@@ -9,13 +9,11 @@ export const SliderMovie = () => {
   const [currentStepSlide, setCurrentStepSlide] = useState(40)
 
   const nextStateImg = () => {
-    console.log('next: ' + currentStepSlide)
     if (currentStepSlide === -28) return
     setCurrentStepSlide((prev) => prev - 24)
   }
 
   const prevStateImg = () => {
-    console.log(currentStepSlide)
     if (currentStepSlide === 40) return
     setCurrentStepSlide((prev) => prev + 24)
   }
